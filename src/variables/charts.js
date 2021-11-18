@@ -343,9 +343,11 @@ let chartExample1 = {
       },
     },
   },
+
+  // This is the main graph, monthly
   data1: (canvas) => {
     return {
-      labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Test2"],
       datasets: [
         {
           label: "Performance",
@@ -354,6 +356,8 @@ let chartExample1 = {
       ],
     };
   },
+
+  //This is the main graph, weekly
   data2: (canvas) => {
     return {
       labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -400,7 +404,7 @@ let chartExample2 = {
     },
   },
   data: {
-    labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Test1"],
     datasets: [
       {
         label: "Sales",
