@@ -347,11 +347,11 @@ let chartExample1 = {
   // This is the main graph, monthly
   data1: (canvas) => {
     return {
-      labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Test2"],
+      labels: ["Jan 2015", "April 2015", "August 2015", "Dec 2015", "Jan 2016", "April 2016", "August 2016", "Dec 2016", "Jan 2017", "April 2017", "August 2017", "Dec 2017","Jan 2018", "April 2018", "August 2018", "Dec 2018", "Jan 2019", "April 2019", "August 2019", "Dec 2019", "Jan 2020", "April 2020", "August 2020", "Dec 2020"],
       datasets: [
         {
           label: "Performance",
-          data: [0, 20, 10, 30, 15, 40, 20, 60, 60],
+          data: [46, 49, 49, 42, 48, 52, 53, 54, 61, 67, 74, 77, 66, 63, 75, 80, 94, 107, 142, 108, 107, 118],
         },
       ],
     };
