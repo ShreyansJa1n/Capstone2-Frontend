@@ -347,7 +347,7 @@ let chartExample1 = {
   // This is the main graph, monthly
   data1: (canvas) => {
     return {
-      labels: ["Jan 2015", "April 2015", "August 2015", "Dec 2015", "Jan 2016", "April 2016", "August 2016", "Dec 2016", "Jan 2017", "April 2017", "August 2017", "Dec 2017","Jan 2018", "April 2018", "August 2018", "Dec 2018", "Jan 2019", "April 2019", "August 2019", "Dec 2019", "Jan 2020", "April 2020", "August 2020", "Dec 2020"],
+      labels: ["Jan 2015", "April 2015", "August 2015", "Dec 2015", "Jan 2016", "April 2016", "August 2016", "Dec 2016", "Jan 2017", "April 2017", "August 2017", "Dec 2017","Jan 2018", "April 2018", "August 2018", "Dec 2018", "Jan 2019", "April 2019", "August 2019", "Dec 2019", "Jan 2020", "April 2020"],
       datasets: [
         {
           label: "Performance",
@@ -358,17 +358,17 @@ let chartExample1 = {
   },
 
   //This is the main graph, weekly
-  data2: (canvas) => {
-    return {
-      labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-      datasets: [
-        {
-          label: "Performance",
-          data: [0, 20, 5, 25, 10, 30, 15, 40, 40],
-        },
-      ],
-    };
-  },
+  // data2: (canvas) => {
+  //   return {
+  //     labels: ["May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  //     datasets: [
+  //       {
+  //         label: "Performance",
+  //         data: [0, 20, 5, 25, 10, 30, 15, 40, 40],
+  //       },
+  //     ],
+  //   };
+  // },
 };
 
 // Example 2 of Chart inside src/views/Index.js (Total orders - Card)

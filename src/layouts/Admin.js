@@ -33,13 +33,13 @@ const Admin = (props) => {
       }
     });
   };
-
+// HeaderName Here
   return (
     <>
       <div className="main-content" ref={mainContent}>
         <AdminNavbar
           {...props}
-          brandText="Capstone Project"
+          brandText="Quarterly Forecasting"
         />
         <Switch>
           {getRoutes(routes)}
