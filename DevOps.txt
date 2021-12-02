@@ -1,0 +1,10 @@
+Collaboration in Git
+Versioning in Git (Mid Term 2 Presentation as Version 1 and Comprehensive Presentation as Version 2). Also need to show switching between these versions.
+Unit Testing
+Build Tool
+Docker - Running your project from container
+Jenkins
+Jenkins sending email to all stakeholders on a wrong commit.
+Selenium Web browsing automation testing
+
+
