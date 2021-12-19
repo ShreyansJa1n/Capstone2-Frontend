@@ -64,14 +64,14 @@ var routes = [
     name: "Login",
     icon: "ni ni-key-25 text-info",
     component: Login,
-    layout: "/auth",
+    layout: "/login",
   },
   {
     path: "/register",
     name: "Register",
     icon: "ni ni-circle-08 text-pink",
     component: Register,
-    layout: "/auth",
+    layout: "/login",
   },
 ];
 export default routes;
