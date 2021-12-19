@@ -1,9 +1,9 @@
 import React,{useState} from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import PropTypes from 'prop-types';
-import 'src/assets/css/App.css';
+import 'assets/css/App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import useToken from 'src/useToken.js';
+import useToken from 'useToken';
 import Login from "./components/Login/login.component.js";
 import SignUp from "./components/Login/signup.component.js";
 
