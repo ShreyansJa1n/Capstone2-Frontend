@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 import PropTypes from 'prop-types';
 
-import '/home/mayuri/Capstone2-Frontend/src/assets/css/App.css';
+import '../../assets/css/App.css';
 import {Link} from "react-router-dom";
 
 async function loginUser(credentials) {
