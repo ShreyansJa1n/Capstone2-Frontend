@@ -1,10 +1,9 @@
 import React,{useState} from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import PropTypes from 'prop-types';
-import '/home/mayuri/Capstone2-Frontend/src/assets/css/App.css';
-import '/home/mayuri/Capstone2-Frontend/src/assets/css/App.css';
+import 'src/assets/css/App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import useToken from '/home/mayuri/Capstone2-Frontend/src/useToken.js';
+import useToken from 'src/useToken.js';
 import Login from "./components/Login/login.component.js";
 import SignUp from "./components/Login/signup.component.js";
 
