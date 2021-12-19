@@ -6,7 +6,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
 
 import AdminLayout from "layouts/Admin.js";
-import LoginLayout from "/home/mayuri/Capstone2-Frontend/src/App.js";
+import LoginLayout from "src/App.js";
 
 ReactDOM.render(
   <BrowserRouter>
