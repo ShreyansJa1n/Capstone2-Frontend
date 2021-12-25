@@ -6,10 +6,6 @@ import {
   Card,
   CardHeader,
   CardBody,
-  NavItem,
-  NavLink,
-  Nav,
-  // Progress,
   Table,
   Container,
   Row,
@@ -26,10 +22,18 @@ import {
 import Header from "components/Headers/Header.js";
 
 const Index = (props) => {
-  const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState(chartExample1.data);
   const [chartExample1Options, setChartExample1Options] = useState(chartExample1.options);
   const [chartName, setChartName] = useState('Click on a stock')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [currentPrice, setCurrentPrice] = useState('')
+  const [predictedPrice, setPredictedPrice] = useState('')
+  const [accuracy, Accuracy] = useState('')
+  const [upDownCurrent, setUpDownCurrent] = useState('')
+  const [upDownPredicted, setUpDownPredicted] = useState('')
+  const [upDownCurrentSince, setUpDownCurrentSince] = useState('')
+  const [upDownPredictedCurrent, setUpDownPredictedCurrent] = useState('')
+  
 
   
 
@@ -65,7 +69,14 @@ const Index = (props) => {
 
   const toggleNavs = (e, index) => {
     e.preventDefault();
-    fetch('http://localhost:8000/apis/'+index+'/').then(response=>response.json()).then((data)=>{
+    fetch('http://localhost:8000/apis/'+index+'/').then((response)=>{
+      console.log(response.status)
+      if (response.status>=400){
+        setErrorMessage('Unable to connect to the backend, please check')
+      }
+      return response.json()
+    }).then((data)=>{
+      setErrorMessage('')
       console.log(data)
       var options = {
           scales: {
@@ -101,10 +112,9 @@ const Index = (props) => {
       setChartExample1Options(options)
       setChartName(data.name)
     })
-    // setActiveNav(index);
-
-   
   };
+
+
   return (
     <>
       <Header />
@@ -118,7 +128,8 @@ const Index = (props) => {
                     <h6 className="text-uppercase text-light ls-1 mb-1">
                       Sales Prediction
                     </h6>
-                    <h2 className="text-white mb-0">{chartName}</h2>
+                    {!errorMessage && <h2 className="text-white mb-0">{chartName}</h2>}
+                    {errorMessage && <h2 className="text-white mb-0">{errorMessage}</h2>}
                   </div>
                 </Row>
               </CardHeader>
@@ -134,28 +145,6 @@ const Index = (props) => {
               </CardBody>
             </Card>
           </Col>
-          {/* <Col xl="4">
-            <Card className="shadow">
-              <CardHeader className="bg-transparent">
-                <Row className="align-items-center">
-                  <div className="col">
-                    <h6 className="text-uppercase text-muted ls-1 mb-1">
-                      Performance
-                    </h6>
-                    <h2 className="mb-0">Total orders</h2>
-                  </div>
-                </Row>
-              </CardHeader>
-              <CardBody>
-                <div className="chart">
-                  <Bar
-                    data={chartExample2.data}
-                    options={chartExample2.options}
-                  />
-                </div>
-              </CardBody>
-            </Card>
-          </Col> */}
         </Row>
         <Row className="mt-5">
           <Col >
@@ -204,8 +193,170 @@ const Index = (props) => {
                       3.2%
                     </td>
                   </tr>
-                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'adidas')}>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'adida')}>
                     <th scope="row">Adidas</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'acn')}>
+                    <th scope="row">Accenture</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'adobe')}>
+                    <th scope="row">Adobe</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'amazon')}>
+                    <th scope="row">Amazon</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'cisco')}>
+                    <th scope="row">Cisco</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'colgate')}>
+                    <th scope="row">Colgate</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'fb')}>
+                    <th scope="row">Facebook</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'fortis')}>
+                    <th scope="row">Fortis</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'hero')}>
+                    <th scope="row">HeroMotoCorp</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'ibm')}>
+                    <th scope="row">IBM</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'johnson')}>
+                    <th scope="row">Johnson and Johnson</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'jp')}>
+                    <th scope="row">JP Morgan</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'maruti')}>
+                    <th scope="row">Maruti Suzuki</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'netflix')}>
+                    <th scope="row">Netflix</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'nvidia')}>
+                    <th scope="row">Nvidia</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'pepsi')}>
+                    <th scope="row">Pepsi</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'tata')}>
+                    <th scope="row">Tata</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'tvs')}>
+                    <th scope="row">TVS Motors</th>
+                    <td>$1.61</td>
+                    <td>$1.63</td>
+                    <td>
+                      <i className="fas fa-arrow-up text-success mr-3" />{" "}
+                      1.2%
+                    </td>
+                  </tr>
+                  <tr style = {{cursor:'pointer'}} onClick={(e)=>toggleNavs(e,'walmart')}>
+                    <th scope="row">Walmart</th>
                     <td>$1.61</td>
                     <td>$1.63</td>
                     <td>
@@ -217,114 +368,6 @@ const Index = (props) => {
               </Table>
             </Card>
           </Col>
-          {/* <Col xl="4">
-            <Card className="shadow">
-              <CardHeader className="border-0">
-                <Row className="align-items-center">
-                  <div className="col">
-                    <h3 className="mb-0">Social traffic</h3>
-                  </div>
-                  <div className="col text-right">
-                    <Button
-                      color="primary"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      size="sm"
-                    >
-                      See all
-                    </Button>
-                  </div>
-                </Row>
-              </CardHeader>
-              <Table className="align-items-center table-flush" responsive>
-                <thead className="thead-light">
-                  <tr>
-                    <th scope="col">Referral</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col" />
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">Facebook</th>
-                    <td>1,480</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">60%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="60"
-                            barClassName="bg-gradient-danger"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Facebook</th>
-                    <td>5,480</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">70%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="70"
-                            barClassName="bg-gradient-success"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Google</th>
-                    <td>4,807</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">80%</span>
-                        <div>
-                          <Progress max="100" value="80" />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Instagram</th>
-                    <td>3,678</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">75%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="75"
-                            barClassName="bg-gradient-info"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">twitter</th>
-                    <td>2,645</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">30%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="30"
-                            barClassName="bg-gradient-warning"
-                          />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
-            </Card>
-          </Col> */}
         </Row>
       </Container>
     </>
