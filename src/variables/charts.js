@@ -1,37 +1,15 @@
-/*!
 
-=========================================================
-* Argon Dashboard React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 const Chart = require("chart.js");
-//
-// Chart extension for making the bars rounded
-// Code from: https://codepen.io/jedtrow/full/ygRYgo
-//
 
 Chart.elements.Rectangle.prototype.draw = function () {
   var ctx = this._chart.ctx;
   var vm = this._view;
   var left, right, top, bottom, signX, signY, borderSkipped, radius;
   var borderWidth = vm.borderWidth;
-  // Set Radius Here
-  // If radius is large enough to cause drawing errors a max radius is imposed
+
   var cornerRadius = 6;
 
   if (!vm.horizontal) {
-    // bar
     left = vm.x - vm.width / 2;
     right = vm.x + vm.width / 2;
     top = vm.y;
@@ -40,7 +18,6 @@ Chart.elements.Rectangle.prototype.draw = function () {
     signY = bottom > top ? 1 : -1;
     borderSkipped = vm.borderSkipped || "bottom";
   } else {
-    // horizontal bar
     left = vm.base;
     right = vm.x;
     top = vm.y - vm.height / 2;
@@ -50,14 +27,11 @@ Chart.elements.Rectangle.prototype.draw = function () {
     borderSkipped = vm.borderSkipped || "left";
   }
 
-  // Canvas doesn't allow us to stroke inside the width so we can
-  // adjust the sizes to fit if we're setting a stroke on the line
+
   if (borderWidth) {
-    // borderWidth shold be less than bar width and bar height.
     var barSize = Math.min(Math.abs(left - right), Math.abs(top - bottom));
     borderWidth = borderWidth > barSize ? barSize : borderWidth;
     var halfStroke = borderWidth / 2;
-    // Adjust borderWidth when bar top position is near vm.base(zero).
     var borderLeft = left + (borderSkipped !== "left" ? halfStroke * signX : 0);
     var borderRight =
       right + (borderSkipped !== "right" ? -halfStroke * signX : 0);
@@ -80,10 +54,6 @@ Chart.elements.Rectangle.prototype.draw = function () {
   ctx.fillStyle = vm.backgroundColor;
   ctx.strokeStyle = vm.borderColor;
   ctx.lineWidth = borderWidth;
-
-  // Corner points, from bottom-left to bottom-right clockwise
-  // | 1 2 |
-  // | 0 3 |
   var corners = [
     [left, bottom],
     [left, top],
@@ -122,7 +92,6 @@ Chart.elements.Rectangle.prototype.draw = function () {
     // eslint-disable-next-line
     var radius = cornerRadius;
 
-    // Fix radius being too large
     if (radius > height / 2) {
       radius = height / 2;
     }
@@ -319,7 +288,7 @@ let chartExample1 = {
           ticks: {
             callback: function (value) {
               if (!(value % 10)) {
-                return "$" + value + "k";
+                return "$" + value;
               }
             },
           },
@@ -337,7 +306,7 @@ let chartExample1 = {
             content += label;
           }
 
-          content += "$" + yLabel + "k";
+          content += "$" + yLabel;
           return content;
         },
       },
@@ -380,8 +349,8 @@ let chartExample2 = {
           ticks: {
             callback: function (value) {
               if (!(value % 10)) {
-                //return '$' + value + 'k'
-                return value;
+                return '$' + value + 'k'
+              return value;
               }
             },
           },
